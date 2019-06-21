@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en-ES">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Mi Comunidad</title>
+    <meta content="IE=edge" http-equiv="x-ua-compatible">
+    <meta content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <link rel="stylesheet" type="text/css" href="style/style.css">
+    <link rel="stylesheet" type="text/css" href="style/responsive.css">
+    <style>
+      #map {
+        height: 500px;
+      }
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+</head>
+
+<body cz-shortcut-listen="true">
+    <div id="main">
+        <div id="page">
+            <div class="top-navbar">
+               <div class="top-navbar-left"><a href="Index.html"><i class="fa fa-angle-left"></i></a></div>
+                <div class="site-title">
+                    <h1>Mi comunidad</h1></div>
+            </div>
+            <div class="content-container">
+                <div class="MiComunidad-card signup animated fadeInUp">
+                    <div class="profile-tabs">
+                        <ul class="tabs" style="width: 100%;">
+                            <li class="tab"><a class="active" href="#denuncias">Generar Alarma</a></li>
+                            <li class="tab"><a href="#photo">Ver alarmas activas</a></li>
+                            <div class="indicator" style="right: 902px; left: 0px;"></div>
+                            <div class="indicator" style="right: 902px; left: 0px;"></div>
+                        </ul>
+                    </div>
+                    <div class="profile-content">
+                        <div id="denuncias">
+                           <div class="content-container">
+                               <div class="MiComunidad-card animated fadeInUp">
+                                
+                                    <div class="form-content">
+                                        <p class="app-desc">Tipo de alarma.</p>
+                                         <div class="input-field with-icon">
+                                             <select name="category" class="browser-default">
+                                                <option value="" selected="">Minería ilegal</option>
+                                                <option value="">Grupos armados</option>
+                                                <option value="">Grupos desconocidos</option>
+                                                <option value="">Amenaza</option>
+                                                <option value="">Panfletos</option>
+                                            </select>
+                                        </div>
+                                        <div class="input-field with-icon">
+                                            <input id="login" type="text">
+                                            <label for="login" class="">Ubicación de los hechos </label>
+                                        </div>
+                                        <div class="input-field with-icon">
+                                            <textarea id="textarea1" class="materialize-textarea"></textarea>
+                                            <label for="textarea1">Descripción de los hechos</label>
+                                        </div>
+                                       
+                                        <a class="btn-large block margin-bottom" href="Index.html">Guardar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="photo" style="display: none;">
+                            <div class="profile-block">
+                                <div id="map"></div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+     <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/jquery.mixitup.min.js"></script>
+    <script type="text/javascript" src="js/slick.min.js"></script>
+    <script type="text/javascript" src="js/jquery.swipebox.min.js"></script>
+    <script type="text/javascript" src="js/custom.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVXrJrRrbIx6LLIxzy-2R9rIyU83UjB3U"></script>
+    <div class="hiddendiv common"></div>
+    <div class="drag-target" style="left: 0px; touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></div>
+    <div class="drag-target" style="right: 0px; touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></div>
+    <script>
+     
+      var map;
+      function initialize() {
+        var mapOptions = {
+          zoom: 6,
+          center: {lat: 6.93361111, lng: -75.17988889}
+        };
+        map = new google.maps.Map(document.getElementById('map'),
+            mapOptions);
+
+        var marker = new google.maps.Marker({
+         
+          position: {lat: 6.96272222, lng: -75.12841667},
+          map: map
+        });
+
+        var infowindow = new google.maps.InfoWindow({
+          content: '<p>Tipo de alarma : Minería Ilegal<br> Denunciante : Alirio Sanchez <br> Descripción : Se esta realizando minería ilegal en Yarumal Antioquia </p>'
+        });
+
+        google.maps.event.addListener(marker, 'click', function() {
+          infowindow.open(map, marker);
+        });
+      }
+
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+</body>
+
+</html>
